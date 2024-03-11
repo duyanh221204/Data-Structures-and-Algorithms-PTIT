@@ -20,7 +20,7 @@ int main()
     {
         cin >> n;
         int s = 0, d = 2e9;
-        for (int i =1 ; i <= n; ++i)
+        for (int i = 1; i <= n; ++i)
         {
             cin >> a[i];
             d = min(a[i], d);
