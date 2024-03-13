@@ -8,18 +8,25 @@ int main()
     //cin >> T;
     while (T--)
     {
-        int n, c;
+        int c, n;
         cin >> c >> n;
-        int a[n + 2], f[n + 2][c + 2] = {};
-        for (int i = 1; i <= n; ++i) cin >> a[i];
-        for (int i = 1; i <= n; ++i)
+        int a[n], f[25002] = {};
+        for (int& i : a) cin >> i;
+        f[0] = 1;
+        for (int& i : a)
         {
-            for (int j = 1; j <= c; ++j)
+            for (int j = c; j >= i; --j)
             {
-                if (j < a[i]) f[i][j] = f[i - 1][j];
-                else f[i][j] = max(f[i - 1][j], f[i - 1][j - a[i]] + a[i]);
+                if (f[j - i]) f[j] = 1;
             }
         }
-        cout << f[n][c];
+        for (int i = c; i; --i)
+        {
+            if (f[i])
+            {
+                cout << i;
+                break;
+            }
+        }
     }
 }
