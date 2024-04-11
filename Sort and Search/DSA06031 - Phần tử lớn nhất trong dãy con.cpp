@@ -11,15 +11,18 @@ int main()
         int n, k;
         cin >> n >> k;
         int a[n + 2];
-        for (int i = 1; i <= n; ++i) cin >> a[i];
-        deque<int> dq;
+        multiset<int> ms;
         for (int i = 1; i <= n; ++i)
         {
-            while (dq.size() && a[i] >= a[dq.back()]) dq.pop_back();
-            dq.push_back(i);
-            if (i - k + 1 > dq.front()) dq.pop_front();
-            if (i >= k) cout << a[dq.front()] << " ";
+            cin >> a[i];
+            if (i <= k) ms.insert(a[i]);
         }
-        cout << "\n";
+        for (int i = k + 1; i <= n; ++i)
+        {
+            cout << *ms.rbegin() << " ";
+            ms.erase(ms.find(a[i - k]));
+            ms.insert(a[i]);
+        }
+        cout << *ms.rbegin() << "\n";
     }
 }
