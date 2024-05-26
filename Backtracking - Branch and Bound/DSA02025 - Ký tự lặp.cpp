@@ -24,7 +24,7 @@ void tt(int x)
             int tmp = kt(k[x], k[x - 1]);
             dem += tmp;
             if (x == n) d = min(dem, d);
-            else tt(x + 1);
+            else if (dem < d) tt(x + 1);
             dem -= tmp;
             h[i] = 0;
         }
